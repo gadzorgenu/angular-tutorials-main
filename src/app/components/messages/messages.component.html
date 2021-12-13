@@ -7,7 +7,7 @@
         Clear messages
     </button>
 
-    <div *ngFor='let message of messageService.messages'>
-        {{message}}
+    <div *ngFor='let message of messageService.messages' class="messages">
+        <h1>{{message}}</h1>
     </div>
 </div>
