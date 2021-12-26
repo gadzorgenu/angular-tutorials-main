@@ -1,16 +1,24 @@
-.clear{
-    padding: 10px;
-    background-color: #405061;
-    color: white;
-    border-radius: 4px;
-    font-size: 16px;
+.clear {
+  padding: 10px;
+  background-color: #405061;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.messages{
-    margin-top: 10px;
-   
+.messages {
+  margin-top: 10px;
 }
 
-.messages h1{
-    font-size: medium;
+.messages h1 {
+  font-size: medium;
+  margin: 0;
+}
+
+.msg {
+  margin: 0;
+}
+
+.msgs {
+  margin-top: 10%;
 }
