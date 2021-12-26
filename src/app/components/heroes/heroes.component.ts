@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { HeroService } from './../../services/hero.service';
 import { Hero} from '../../Hero'
 
-
-
 @Component({
   selector: 'app-heroes',
   templateUrl: './heroes.component.html',

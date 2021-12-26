@@ -1,5 +1,5 @@
-<div *ngIf="messageService.messages.length">
-    <h2>Messages</h2>
+<div *ngIf="messageService.messages.length" class="msgs">
+    <h2 class="msg">Messages</h2>
     <button
         class="clear"
         (click) = "messageService.clear()"
