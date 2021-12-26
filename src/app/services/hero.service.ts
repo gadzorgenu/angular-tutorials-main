@@ -86,4 +86,31 @@ export class HeroService {
         catchError(this.handleError<any>('updated Hero'))
       );
   }
+
+  /**
+   * Add hero to the hero list
+   * @param hero 
+   * expects the server to generate an id for the new hero, which it returns in the Observable<Hero> to the caller. 
+   */
+  addHero(hero: Hero) : Observable<Hero> {
+    return this.http.post<Hero>(this.heroesUrl,hero,this.httpOptions)
+    .pipe(
+      tap((newHero: Hero) => this.log(`added hero w/ id=${newHero.id}`)),
+      catchError(this.handleError<Hero>('addHero'))
+    )
+  } 
+
+  /**
+   * Function to delete hero from the server
+   * @param id hero id
+   */
+  deleteHero(id: number): Observable<Hero> {
+    const url = `${this.heroesUrl}/${id}`;
+
+    return this.http.delete<Hero>(url, this.httpOptions).pipe(
+      tap( _ => this.log(`deleted hero id=${id}`)),
+      catchError(this.handleError<Hero>('deleteHero'))
+    );
+  }
+
 }
