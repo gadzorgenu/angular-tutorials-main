@@ -1,4 +1,3 @@
-import { MessageService } from './../../services/message.service';
 import { Component, OnInit } from '@angular/core';
 import { HeroService } from './../../services/hero.service';
 import { Hero} from '../../Hero'
@@ -10,24 +9,33 @@ import { Hero} from '../../Hero'
 })
 export class HeroesComponent implements OnInit {
   heroes:Hero[] = [];
-  // selectedHero?: Hero;
 
-  constructor(private heroService: HeroService, private messageService: MessageService) { }
+  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
     this.getHeroes();
   }
-
-  // onSelect(hero: Hero): void{
-  //   this.selectedHero = hero;
-  //   this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
-  // }
 
   getHeroes() : void{
     //The subscribe() method passes the emitted array to the callback, which sets the component's heroes property.
     this.heroService.getHeroes().subscribe(
       heroes => this.heroes = heroes
     );
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if(!name){ return }
+
+    this.heroService.addHero({ name } as Hero)
+    .subscribe(hero => {
+      this.heroes.push(hero);
+    });
+  }
+
+  deleteHero(hero:Hero): void{
+     this.heroes = this.heroes.filter( h => h !== hero);
+     this.heroService.deleteHero(hero.id).subscribe();
   }
 
 }
