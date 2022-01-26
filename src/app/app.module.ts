@@ -1,3 +1,4 @@
+import { MessageService } from './services/message.service';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { StrengthPipe } from './strength/strength.pipe';
 import { HeroComponent } from './components/hero/hero.component';
+import { HeroService } from './services/hero.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,7 @@ import { HeroComponent } from './components/hero/hero.component';
       InMemoryDataService, {dataEncapsulation: false}
     )
   ],
-  providers: [],
+  providers: [HeroService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

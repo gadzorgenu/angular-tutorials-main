@@ -1,14 +1,15 @@
 import { MessageService } from './message.service';
 describe('MessageService',() =>{
+
     let service: MessageService
 
     beforeEach(() => {
-        // service = new MessageService()
+        service = new MessageService()
 
     })
 
     it('should have no message to start', ()=> {
-        service = new MessageService()
+        // service = new MessageService()
 
         expect(service.messages.length).toBe(0)
     })
