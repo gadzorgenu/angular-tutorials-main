@@ -30,6 +30,8 @@ export class HeroDetailComponent implements OnInit {
   getHero(): void{
     //extracting the hero id from the route
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    //the + sign is used to cast a string to a number
+    // const id = +this.route.snapshot.paramMap.get('id');
     this.heroService.getHero(id).subscribe(hero => this.hero = hero);
   }
 
@@ -37,11 +39,47 @@ export class HeroDetailComponent implements OnInit {
     this.location.back();
   }
 
+  save_():void {
+    this.debounce(() => {
+      if(this.hero){
+          this.heroService.updateHero(this.hero).
+          subscribe(()=> this.goBack())
+        }
+      }, 250, false)();
+  }
+
   save():void {
-    if(this.hero){
-      this.heroService.updateHero(this.hero).
-      subscribe(()=> this.goBack())
+    this.somethirdPartyPromise().then(() => {
+      if(this.hero){
+          this.heroService.updateHero(this.hero).
+          subscribe(()=> this.goBack())
+        }
+      });
+  }
+
+  somethirdPartyPromise(){
+    return new Promise((resolve) => {
+      resolve(null)
+    })
+  }
+
+
+  debounce(func: any, wait:any, immediate: any){
+    var timeout:any;
+
+    return  () => {
+      var context = this, args = arguments;
+      var later = function () {
+        timeout = null ;
+        if (!timeout) func.apply(context,args);
+      };
+      var callNow = immediate && !timeout;
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+      if( callNow) func.apply(context,args)
+      
     }
+    
   }
 
 }

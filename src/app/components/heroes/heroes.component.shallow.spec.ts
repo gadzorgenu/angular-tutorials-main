@@ -20,7 +20,7 @@ describe('Heroes component(shallow test)', () => {
         
         TestBed.configureTestingModule({
             declarations:[HeroesComponent],
-            // schemas:[NO_ERRORS_SCHEMA], //ignoring the child component
+            schemas:[NO_ERRORS_SCHEMA], //ignoring the child component
             providers: [
               {provide:HeroService, useValue: mockHeroService }  
             ]
